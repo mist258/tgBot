@@ -27,8 +27,7 @@ expense_reply = ReplyKeyboardMarkup(
             KeyboardButton(text='for Other'),
         ],
         [
-            KeyboardButton(text='Delete notes'),
-            KeyboardButton(text='Show notes'),
+            KeyboardButton(text='Back'),
         ]
     ],
     resize_keyboard=True,

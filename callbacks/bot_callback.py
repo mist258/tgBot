@@ -10,7 +10,7 @@ async def show_notes(callback: CallbackQuery):
     await callback.message.answer('Hi')
 
 
-@router_cb.callback_query(F.data == 'adding')
+@router_cb.callback_query(F.data == 'add_expense')
 async def add_expense(callback: CallbackQuery):
     await callback.answer()
     await callback.message.answer('Hi')
