@@ -6,6 +6,7 @@ from aiogram.client.default import DefaultBotProperties
 from dotenv import load_dotenv, find_dotenv
 
 from handlers.bot_handlers import router
+from callbacks.bot_callback import router_cb
 
 
 load_dotenv(find_dotenv())
@@ -19,6 +20,7 @@ dp = Dispatcher()
 
 async def main():
     dp.include_router(router)
+    dp.include_router(router_cb)
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot, skip_updates=True)
 
