@@ -29,7 +29,7 @@ main_inline_for_income = InlineKeyboardMarkup(
             InlineKeyboardButton(text='Delete notes', callback_data='deleting')
         ],
         [
-            InlineKeyboardButton(text='Back', callback_data='returning')
+            InlineKeyboardButton(text='Back', callback_data='return')
         ]
     ]
 )

@@ -16,20 +16,15 @@ This bot will help manage your expenses and income.
 '''
 
 
-@router.message(CommandStart())
+@router.message(CommandStart())  # cmd /start
 async def cmd_start(message: Message, bot: Bot) -> None:
     await bot.send_message(message.from_user.id,
                            text=DESCRIPTION,
                            reply_markup=reply_keyboards.main_reply)
 
 
-@router.message(F.text.lower() == '/python')
-async def get_id(message: Message) -> None:
-    await message.reply(f'ID: {message.from_user.id}\nName {message.from_user.last_name}\n First name{message.from_user.first_name}')
-
-
 @router.message()
-async def bot_functional(message: Message) -> None:
+async def bot_functional(message: Message) -> None:  # handler for menu
     msg = message.text.lower()
 
     if msg == 'expense':
@@ -47,4 +42,6 @@ async def bot_functional(message: Message) -> None:
     if msg == 'income':
         await message.answer('Allowed actions for income:', reply_markup=inline_keyboards.main_inline_for_income)
 
+    if msg == 'back':
+        await message.answer('Return to main menu:', reply_markup=reply_keyboards.main_reply)
 
