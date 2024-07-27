@@ -1,10 +1,12 @@
-from aiogram import Router, Bot
+from aiogram import Router, Bot, F
 from aiogram.types import Message
 from aiogram.filters import CommandStart
-from keyboards import reply_keyboards, inline_keyboards
+
+from keyboards import reply_keyboards, builder_keyboard
 
 
 router = Router()
+
 
 DESCRIPTION = '''
 This bot will help manage your expenses and income.
@@ -23,25 +25,33 @@ async def cmd_start(message: Message, bot: Bot) -> None:
                            reply_markup=reply_keyboards.main_reply)
 
 
-@router.message()
-async def bot_functional(message: Message) -> None:  # handler for menu
-    msg = message.text.lower()
+@router.message(F.text == 'Expense')
+async def bot_functional(message: Message) -> None:
+    await message.answer('Choose category of expense:', reply_markup=reply_keyboards.expense_reply)
 
-    if msg == 'expense':
-        await message.answer('Main categories of expenses:', reply_markup=reply_keyboards.expense_reply)
-    if (
-            msg == 'for food'
-            or msg == 'for medicine'
-            or msg == 'for other'
-            or msg == 'for clothes'
-            or msg == 'for entertainment'
-            or msg == 'for rent'
-    ):
-        await message.answer('Allowed actions for category:', reply_markup=inline_keyboards.main_inline_for_expense)
 
-    if msg == 'income':
-        await message.answer('Allowed actions for income:', reply_markup=inline_keyboards.main_inline_for_income)
+@router.message(F.text == 'Income')
+async def bot_functional_2(message: Message) -> None:
+    await message.answer('Allowed actions for income:', reply_markup=reply_keyboards.income_reply)
 
-    if msg == 'back':
-        await message.answer('Return to main menu:', reply_markup=reply_keyboards.main_reply)
+
+@router.message(F.text == 'Back')
+async def bot_functional_3(message: Message) -> None:
+    await message.answer('Return to main menu:', reply_markup=reply_keyboards.main_reply)
+
+
+@router.message(F.text == 'Add expense')
+async def bot_functional_4(message: Message) -> None:
+    await message.answer('Choose category of expense:', reply_markup=await builder_keyboard.builder_keyboard())
+
+
+@router.message(F.text == 'Go back')
+async def bot_functional_5(message: Message) -> None:
+    await message.answer('Menu of Expenses:', reply_markup=reply_keyboards.expense_reply)
+
+
+
+
+
+
 
