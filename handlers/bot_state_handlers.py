@@ -46,7 +46,7 @@ async def get_rent_expense(message: Message, state: FSMContext) -> None:
     data_time = datetime.datetime.now().strftime("%Y-%m-%d")
 
     if assist_functions.validate_input(message.text):
-        await state.update_data
+        await state.update_data(rent_expense=message.text, duration=data_time, id=message.from_user.id)
         data = await state.get_data()
         await message.answer(f'Your rent expense: {data["rent_expense"]} $')
 
