@@ -49,9 +49,3 @@ async def bot_functional_4(message: Message) -> None:
 async def bot_functional_5(message: Message) -> None:
     await message.answer('Menu of Expenses:', reply_markup=reply_keyboards.expense_reply)
 
-
-
-
-
-
-

@@ -24,7 +24,20 @@ async def general_income(message: Message, state: FSMContext,) -> None:
     data_time = datetime.datetime.now().strftime("%Y-%m-%d")
 
     if assist_functions.validate_input(message.text):
-        await state.update_data(general_income=message.text, duration=data_time, id=message.from_user.id)
+        update_data = {
+            "general_income": message.text,
+            "data_time": data_time
+        }
+
+        user_id = str(message.from_user.id)
+
+        new_data = assist_functions.read_data('data.json')
+
+        if user_id in new_data:
+            new_data[user_id].append(update_data)
+        else:
+            new_data[user_id] = [update_data]
+
         data = await state.get_data()
         await message.answer(f'Your income: {data["general_income"]}$')
         await state.clear()
@@ -46,7 +59,19 @@ async def get_rent_expense(message: Message, state: FSMContext) -> None:
     data_time = datetime.datetime.now().strftime("%Y-%m-%d")
 
     if assist_functions.validate_input(message.text):
-        await state.update_data(rent_expense=message.text, duration=data_time, id=message.from_user.id)
+        update_data = {
+            "rent_expense": message.text,
+            "data_time": data_time
+        }
+        user_id = str(message.from_user.id)
+
+        new_data = assist_functions.read_data('data.json')
+
+        if user_id in new_data:
+            new_data[user_id].append(update_data)
+        else:
+            new_data[user_id] = [update_data]
+
         data = await state.get_data()
         await message.answer(f'Your rent expense: {data["rent_expense"]} $')
 
