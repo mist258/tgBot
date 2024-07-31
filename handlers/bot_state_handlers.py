@@ -38,8 +38,12 @@ async def general_income(message: Message, state: FSMContext,) -> None:
         else:
             new_data[user_id] = [update_data]
 
-        data = await state.get_data()
-        await message.answer(f'Your income: {data["general_income"]}$')
+        assist_functions.write_data('data.json', update_data)
+
+        await state.update_data(general_income=message.text, data_time=data_time)
+
+        update_data = await state.get_data()
+        await message.answer(f'Your income: {update_data["general_income"]}$')
         await state.clear()
     else:
         await message.answer('Enter only integer or float.')
@@ -63,6 +67,7 @@ async def get_rent_expense(message: Message, state: FSMContext) -> None:
             "rent_expense": message.text,
             "data_time": data_time
         }
+
         user_id = str(message.from_user.id)
 
         new_data = assist_functions.read_data('data.json')
@@ -72,11 +77,12 @@ async def get_rent_expense(message: Message, state: FSMContext) -> None:
         else:
             new_data[user_id] = [update_data]
 
-        data = await state.get_data()
-        await message.answer(f'Your rent expense: {data["rent_expense"]} $')
+        assist_functions.write_data('data.json', new_data)
 
-        with open('data.json', 'a') as f:
-            json.dump(data, f, indent=3)
+        await state.update_data(general_income=message.text, data_time=data_time)
+
+        update_data = await state.get_data()
+        await message.answer(f'Your rent expense: {update_data['rent_expense']} $')
         await state.clear()
     else:
         await message.answer('Enter only integer or float.')
