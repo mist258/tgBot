@@ -15,7 +15,7 @@ class FileHandler:  # context manager's class
         self.mode = mode
 
     def __enter__(self):
-        self.file = open(self.filename. self.mode)
+        self.file = open(self.filename, self.mode)
         return self.file
 
     def __exit__(self, ext_type, exc_value, traceback):
@@ -26,13 +26,13 @@ def read_data(filename):  # for reading recorded data
     try:
         with FileHandler(filename, 'r') as f:
             return json.load(f)
-    except FileNotFoundError:
+    except (FileNotFoundError, json.decoder.JSONDecodeError):
         return {}
 
 
 def write_data(filename, data):  # for recording updated data
     try:
-        with FileHandler(filename, 'w') as f:
+        with FileHandler(filename, 'a') as f:
             return json.dump(data, f, indent=4)
-    except FileNotFoundError:
+    except (FileNotFoundError, json.decoder.JSONDecodeError):
         return {}
