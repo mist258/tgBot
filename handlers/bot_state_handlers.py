@@ -100,7 +100,25 @@ async def get_food_expense(message: Message, state: FSMContext) -> None:
     data_time = datetime.datetime.now().strftime("%Y-%m-%d")
 
     if assist_functions.validate_input(message.text):
+
+        update_data = {
+            "food_expense": message.text,
+            "data_time": data_time
+        }
+
+        user_id = str(message.from_user.id)
+
+        new_data = assist_functions.read_data('data.json')
+
+        if user_id in new_data:
+            new_data[user_id].append(update_data)
+        else:
+            new_data[user_id] = [update_data]
+
+        assist_functions.write_data('data.json', new_data)
+
         await state.update_data(food_expense=message.text, duration=data_time, id=message.from_user.id)
+
         data = await state.get_data()
         await message.answer(f'Your food expense: {data['food_expense']}$')
 
