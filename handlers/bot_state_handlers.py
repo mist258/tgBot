@@ -121,9 +121,6 @@ async def get_food_expense(message: Message, state: FSMContext) -> None:
 
         data = await state.get_data()
         await message.answer(f'Your food expense: {data['food_expense']}$')
-
-        with open('data.json', 'a') as f:
-            json.dump(data, f, indent=3)
         await state.clear()
     else:
         await message.answer('Enter only integer or float.')
@@ -141,12 +138,27 @@ async def get_clothes_expense(message: Message, state: FSMContext) -> None:
     data_time = datetime.datetime.now().strftime("%Y-%m-%d")
 
     if assist_functions.validate_input(message.text):
+
+        update_data = {
+            "clothes_expense": message.text,
+            "data_time": data_time
+        }
+
+        user_id = str(message.from_user.id)
+
+        new_data = assist_functions.read_data('data.json')
+
+        if user_id in new_data:
+            new_data[user_id].append(update_data)
+        else:
+            new_data[user_id] = [update_data]
+
+        assist_functions.write_data('data.json', new_data)
+
         await state.update_data(clothes_expense=message.text, duration=data_time, id=message.from_user.id)
+
         data = await state.get_data()
         await message.answer(f'Your clothes expense: {data["clothes_expense"]} $')
-
-        with open('data.json', 'a') as f:
-            json.dump(data, f, indent=3)
         await state.clear()
     else:
         await message.answer('Enter only integer or float.')
@@ -164,12 +176,27 @@ async def get_gym_expense(message: Message, state: FSMContext) -> None:
     data_time = datetime.datetime.now().strftime("%Y-%m-%d")
 
     if assist_functions.validate_input(message.text):
+
+        update_data = {
+            "gym_expense": message.text,
+            "data_time": data_time
+        }
+
+        user_id = str(message.from_user.id)
+
+        new_data = assist_functions.read_data('data.json')
+
+        if user_id in new_data:
+            new_data[user_id].append(update_data)
+        else:
+            new_data[user_id] = [update_data]
+
+        assist_functions.write_data('data.json', new_data)
+
         await state.update_data(gym_expense=message.text, duration=data_time, id=message.from_user.id)
+
         data = await state.get_data()
         await message.answer(f'Your gym expense: {data["gym_expense"]}$')
-
-        with open('data.json', 'a') as f:
-            json.dump(data, f, indent=3)
         await state.clear()
     else:
         await message.answer('Enter only integer or float.')
@@ -187,12 +214,27 @@ async def get_medicine_state(message: Message, state: FSMContext) -> None:
     data_time = datetime.datetime.now().strftime("%Y-%m-%d")
 
     if assist_functions.validate_input(message.text):
+
+        update_data = {
+            "medicine_expense": message.text,
+            "data_time": data_time
+        }
+
+        user_id = str(message.from_user.id)
+
+        new_data = assist_functions.read_data('data.json')
+
+        if user_id in new_data:
+            new_data[user_id].append(update_data)
+        else:
+            new_data[user_id] = [update_data]
+
+        assist_functions.write_data('data.json', new_data)
+
         await state.update_data(medicine_expense=message.text, duration=data_time, id=message.from_user.id)
+
         data = await state.get_data()
         await message.answer(f'Your medicine expense: {data["medicine_expense"]} $')
-
-        with open('data.json', 'a') as f:
-            json.dump(data, f, indent=3)
         await state.clear()
     else:
         await message.answer('Enter only integer or float.')
@@ -210,12 +252,27 @@ async def get_other_expense(message: Message, state: FSMContext) -> None:
     data_time = datetime.datetime.now().strftime("%Y-%m-%d")
 
     if assist_functions.validate_input(message.text):
+
+        update_data = {
+            "other_expense": message.text,
+            "data_time": data_time
+        }
+
+        user_id = str(message.from_user.id)
+
+        new_data = assist_functions.read_data('data.json')
+
+        if user_id in new_data:
+            new_data[user_id].append(update_data)
+        else:
+            new_data[user_id] = [update_data]
+
+        assist_functions.write_data('data.json', new_data)
+
         await state.update_data(other_expense=message.text, duration=data_time, id=message.from_user.id)
+
         data = await state.get_data()
         await message.answer(f'Your other expense: {data["other_expense"]} $')
-
-        with open('data.json', 'a') as f:
-            json.dump(data, f, indent=3)
         await state.clear()
     else:
         await message.answer('Enter only integer or float.')
