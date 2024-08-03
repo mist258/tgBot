@@ -1,10 +1,40 @@
 {
-    "general_income": "58",
-    "data_time": "2024-07-30",
     "899219137": [
         {
-            "rent_expense": "456",
-            "data_time": "2024-07-30"
+            "rent_expense": "4",
+            "data_time": "2024-08-03"
+        },
+        {
+            "food_expense": "8",
+            "data_time": "2024-08-03"
+        },
+        {
+            "other_expense": "5",
+            "data_time": "2024-08-03"
+        },
+        {
+            "rent_expense": "7",
+            "data_time": "2024-08-03"
+        },
+        {
+            "food_expense": "9",
+            "data_time": "2024-08-03"
+        },
+        {
+            "gym_expense": "4",
+            "data_time": "2024-08-03"
+        },
+        {
+            "medicine_expense": "9",
+            "data_time": "2024-08-03"
+        },
+        {
+            "other_expense": "8",
+            "data_time": "2024-08-03"
+        },
+        {
+            "general_income": "96",
+            "data_time": "2024-08-03"
         }
     ]
 }

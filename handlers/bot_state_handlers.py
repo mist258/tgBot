@@ -1,7 +1,6 @@
 from aiogram import Router, F
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
-import json
 import datetime
 
 from utils.states import IncomeStates, RentState, FoodState, ClothesState, GymState, OtherState, MedicineState
@@ -24,6 +23,7 @@ async def general_income(message: Message, state: FSMContext,) -> None:
     data_time = datetime.datetime.now().strftime("%Y-%m-%d")
 
     if assist_functions.validate_input(message.text):
+
         update_data = {
             "general_income": message.text,
             "data_time": data_time
@@ -38,16 +38,17 @@ async def general_income(message: Message, state: FSMContext,) -> None:
         else:
             new_data[user_id] = [update_data]
 
-        assist_functions.write_data('data.json', update_data)
+        assist_functions.write_data('data.json', new_data)
 
-        await state.update_data(general_income=message.text, data_time=data_time)
+        await state.update_data(general_income=message.text, duration=data_time, id=message.from_user.id)
 
-        update_data = await state.get_data()
-        await message.answer(f'Your income: {update_data["general_income"]}$')
+        data = await state.get_data()
+        await message.answer(f"Your rent expense: {data['general_income']}$")
         await state.clear()
     else:
         await message.answer('Enter only integer or float.')
         await state.clear()
+
 
 ''' for expenses'''
 
@@ -63,6 +64,7 @@ async def get_rent_expense(message: Message, state: FSMContext) -> None:
     data_time = datetime.datetime.now().strftime("%Y-%m-%d")
 
     if assist_functions.validate_input(message.text):
+
         update_data = {
             "rent_expense": message.text,
             "data_time": data_time
@@ -79,10 +81,10 @@ async def get_rent_expense(message: Message, state: FSMContext) -> None:
 
         assist_functions.write_data('data.json', new_data)
 
-        await state.update_data(general_income=message.text, data_time=data_time)
+        await state.update_data(rent_expense=message.text, duration=data_time, id=message.from_user.id)
 
-        update_data = await state.get_data()
-        await message.answer(f'Your rent expense: {update_data['rent_expense']} $')
+        data = await state.get_data()
+        await message.answer(f"Your rent expense: {data['rent_expense']}$")
         await state.clear()
     else:
         await message.answer('Enter only integer or float.')

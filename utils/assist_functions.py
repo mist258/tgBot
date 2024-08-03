@@ -32,7 +32,7 @@ def read_data(filename):  # for reading recorded data
 
 def write_data(filename, data):  # for recording updated data
     try:
-        with FileHandler(filename, 'a') as f:
+        with FileHandler(filename, 'w') as f:
             return json.dump(data, f, indent=4)
     except (FileNotFoundError, json.decoder.JSONDecodeError):
         return {}
