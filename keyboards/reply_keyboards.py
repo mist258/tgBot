@@ -57,3 +57,16 @@ back_reply = ReplyKeyboardMarkup(
     one_time_keyboard=True,
     selective=True
 )
+
+back_reply1 = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton(text='Go back'),
+        ]
+    ],
+    resize_keyboard=True,
+    one_time_keyboard=True,
+    selective=True
+)
+
+
