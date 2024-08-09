@@ -5,25 +5,25 @@ class IncomeStates(StatesGroup):  # add income
     income = State()
 
 
-class RentState(StatesGroup):  # for rent
+class RentState(StatesGroup):  # expenses for rent
     rent_expense = State()
 
 
-class FoodState(StatesGroup):  # for Food
+class FoodState(StatesGroup):  # expenses for Food
     food_expense = State()
 
 
-class ClothesState(StatesGroup):  # for clothes
+class ClothesState(StatesGroup):  # expenses for clothes
     clothes_expense = State()
 
 
-class GymState(StatesGroup):  # for gym
+class GymState(StatesGroup):  # expenses for gym
     gym_expense = State()
 
 
-class OtherState(StatesGroup):  # for other
+class OtherState(StatesGroup):  # expenses for other
     other_expense = State()
 
 
-class MedicineState(StatesGroup):  # for medicine
+class MedicineState(StatesGroup):  # expenses for medicine
     medicine_expense = State()

@@ -9,7 +9,7 @@ from utils import assist_functions
 
 router_state = Router()
 
-'''for income'''
+# for income
 
 
 @router_state.message(F.text == 'Add income')
@@ -49,8 +49,7 @@ async def general_income(message: Message, state: FSMContext,) -> None:
         await message.answer('Enter only integer or float.')
         await state.clear()
 
-
-''' for expenses'''
+# for expenses
 
 
 @router_state.message(F.text == 'Rent')
@@ -186,7 +185,7 @@ async def get_gym_expense(message: Message, state: FSMContext) -> None:
 
         user_id = str(message.from_user.id)
 
-        new_data = assist_functions.read_data('data.json')
+        new_data = assist_functions.read_data('data.json'), 'Back'
 
         if user_id in new_data:
             new_data[user_id].append(update_data)

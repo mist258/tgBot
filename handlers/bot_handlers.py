@@ -22,7 +22,7 @@ This bot will help manage your expenses and income.
 async def cmd_start(message: Message, bot: Bot) -> None:
     await bot.send_message(message.from_user.id,
                            text=DESCRIPTION,
-                           reply_markup=reply_keyboards.main_reply)
+                           reply_markup=await builder_keyboard.builder_main_menu())
 
 
 @router.message(F.text == 'Expense')
@@ -37,7 +37,7 @@ async def bot_functional_2(message: Message) -> None:
 
 @router.message(F.text == 'Back')
 async def bot_functional_3(message: Message) -> None:
-    await message.answer('Return to main menu:', reply_markup=reply_keyboards.main_reply)
+    await message.answer('Return to main menu:', reply_markup=await builder_keyboard.builder_main_menu())
 
 
 @router.message(F.text == 'Add expense')
@@ -49,3 +49,12 @@ async def bot_functional_4(message: Message) -> None:
 async def bot_functional_5(message: Message) -> None:
     await message.answer('Menu of Expenses:', reply_markup=reply_keyboards.expense_reply)
 
+
+@router.message(F.text == 'Delete notes')
+async def bot_functional_6(message: Message) -> None:
+    await message.answer('Choose option:', reply_markup=await builder_keyboard.builder_for_delete_notes())
+
+
+@router.message(F.text == 'Statistic')
+async def bot_functional_7(message: Message) -> None:
+    await message.answer('Choose option:', reply_markup=await builder_keyboard.builder_for_show_notes())
