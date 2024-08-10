@@ -30,7 +30,7 @@ def read_data(filename):  # for reading recorded data
         return {}
 
 
-def write_data(filename, data):  # for recording updated data
+def write_data(filename, data):  # for recording new data
     try:
         with FileHandler(filename, 'w') as f:
             return json.dump(data, f, indent=4)

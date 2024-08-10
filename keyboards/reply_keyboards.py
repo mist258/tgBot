@@ -1,7 +1,7 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 
-expense_reply = ReplyKeyboardMarkup(
+expense_reply = ReplyKeyboardMarkup(  # kb for expenses
     keyboard=[
         [
             KeyboardButton(text='Add expense'),
@@ -18,7 +18,7 @@ expense_reply = ReplyKeyboardMarkup(
     selective=True
 )
 
-income_reply = ReplyKeyboardMarkup(
+income_reply = ReplyKeyboardMarkup(  # kb for incomes
     keyboard=[
         [
             KeyboardButton(text='Add income'),
@@ -35,7 +35,7 @@ income_reply = ReplyKeyboardMarkup(
     selective=True
 )
 
-back_reply = ReplyKeyboardMarkup(
+back_reply = ReplyKeyboardMarkup(  # kb for return
     keyboard=[
         [
             KeyboardButton(text='Go back'),

@@ -12,13 +12,13 @@ router_state = Router()
 # for income
 
 
-@router_state.message(F.text == 'Add income')
+@router_state.message(F.text == 'Add income')  # button 'Add income'
 async def add_income(message: Message, state: FSMContext) -> None:
     await state.set_state(IncomeStates.income)
     await message.answer('Enter the amount of income:')
 
 
-@router_state.message(IncomeStates.income)
+@router_state.message(IncomeStates.income)  # state to write incomes
 async def general_income(message: Message, state: FSMContext,) -> None:
     data_time = datetime.datetime.now().strftime("%Y-%m-%d")
 
@@ -52,13 +52,13 @@ async def general_income(message: Message, state: FSMContext,) -> None:
 # for expenses
 
 
-@router_state.message(F.text == 'Rent')
+@router_state.message(F.text == 'Rent')  # button 'Rent'
 async def add_rent_expense(message: Message, state: FSMContext) -> None:
     await state.set_state(RentState.rent_expense)
     await message.answer('Enter the amount of the expenses for RENT:')
 
 
-@router_state.message(RentState.rent_expense)
+@router_state.message(RentState.rent_expense)  # state to write rent expenses
 async def get_rent_expense(message: Message, state: FSMContext) -> None:
     data_time = datetime.datetime.now().strftime("%Y-%m-%d")
 
@@ -90,13 +90,13 @@ async def get_rent_expense(message: Message, state: FSMContext) -> None:
         await state.clear()
 
 
-@router_state.message(F.text == 'Food')
+@router_state.message(F.text == 'Food')  # button 'Food'
 async def add_food_expense(message: Message, state: FSMContext) -> None:
     await state.set_state(FoodState.food_expense)
     await message.answer('Enter the amount of the expenses for FOOD:')
 
 
-@router_state.message(FoodState.food_expense)
+@router_state.message(FoodState.food_expense)  # state to write food expenses
 async def get_food_expense(message: Message, state: FSMContext) -> None:
     data_time = datetime.datetime.now().strftime("%Y-%m-%d")
 
@@ -128,13 +128,13 @@ async def get_food_expense(message: Message, state: FSMContext) -> None:
         await state.clear()
 
 
-@router_state.message(F.text == 'Clothes')
+@router_state.message(F.text == 'Clothes')  # button 'Clothes'
 async def add_clothes_expense(message: Message, state: FSMContext) -> None:
     await state.set_state(ClothesState.clothes_expense)
     await message.answer('Enter the amount of the expenses for CLOTHES:')
 
 
-@router_state.message(ClothesState.clothes_expense)
+@router_state.message(ClothesState.clothes_expense)  # state to write clothes expenses
 async def get_clothes_expense(message: Message, state: FSMContext) -> None:
     data_time = datetime.datetime.now().strftime("%Y-%m-%d")
 
@@ -166,13 +166,13 @@ async def get_clothes_expense(message: Message, state: FSMContext) -> None:
         await state.clear()
 
 
-@router_state.message(F.text == 'Gym')
+@router_state.message(F.text == 'Gym')  # button 'Gym'
 async def add_gym_expense(message: Message, state: FSMContext) -> None:
     await state.set_state(GymState.gym_expense)
     await message.answer('Enter the amount of the expenses for GYM:')
 
 
-@router_state.message(GymState.gym_expense)
+@router_state.message(GymState.gym_expense)  # state to write gym expenses
 async def get_gym_expense(message: Message, state: FSMContext) -> None:
     data_time = datetime.datetime.now().strftime("%Y-%m-%d")
 
@@ -204,13 +204,13 @@ async def get_gym_expense(message: Message, state: FSMContext) -> None:
         await state.clear()
 
 
-@router_state.message(F.text == 'Medicine')
+@router_state.message(F.text == 'Medicine')  # button 'Medicine'
 async def add_medicine_expense(message: Message, state: FSMContext) -> None:
     await state.set_state(MedicineState.medicine_expense)
     await message.answer('Enter the amount of the expenses for MEDICINES:')
 
 
-@router_state.message(MedicineState.medicine_expense)
+@router_state.message(MedicineState.medicine_expense)  # state to write medicine expenses
 async def get_medicine_state(message: Message, state: FSMContext) -> None:
     data_time = datetime.datetime.now().strftime("%Y-%m-%d")
 
@@ -240,15 +240,16 @@ async def get_medicine_state(message: Message, state: FSMContext) -> None:
     else:
         await message.answer('Enter only integer or float.')
         await state.clear()
+    await message.answer('Show for a day')
 
 
-@router_state.message(F.text == "Other")
+@router_state.message(F.text == "Other")  # button 'Other'
 async def add_other_expense(message: Message, state: FSMContext) -> None:
     await state.set_state(OtherState.other_expense)
     await message.answer('Enter the amount of expenses for OTHER:')
 
 
-@router_state.message(OtherState.other_expense)
+@router_state.message(OtherState.other_expense)  # state to write other expenses
 async def get_other_expense(message: Message, state: FSMContext) -> None:
     data_time = datetime.datetime.now().strftime("%Y-%m-%d")
 
