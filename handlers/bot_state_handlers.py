@@ -185,7 +185,7 @@ async def get_gym_expense(message: Message, state: FSMContext) -> None:
 
         user_id = str(message.from_user.id)
 
-        new_data = assist_functions.read_data('data.json'), 'Back'
+        new_data = assist_functions.read_data('data.json')
 
         if user_id in new_data:
             new_data[user_id].append(update_data)
