@@ -27,3 +27,7 @@ class OtherState(StatesGroup):  # expenses for other
 
 class MedicineState(StatesGroup):  # expenses for medicine
     medicine_expense = State()
+
+
+class NotesDayState(StatesGroup):  # state for filtering notes by day
+    notes_day = State()

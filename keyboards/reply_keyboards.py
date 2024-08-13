@@ -5,8 +5,6 @@ expense_reply = ReplyKeyboardMarkup(  # kb for expenses
     keyboard=[
         [
             KeyboardButton(text='Add expense'),
-            KeyboardButton(text='Statistic'),
-            KeyboardButton(text='Delete notes'),
         ],
         [
             KeyboardButton(text='Back'),
@@ -22,8 +20,6 @@ income_reply = ReplyKeyboardMarkup(  # kb for incomes
     keyboard=[
         [
             KeyboardButton(text='Add income'),
-            KeyboardButton(text='Statistic'),
-            KeyboardButton(text='Delete notes'),
         ],
         [
             KeyboardButton(text='Back'),
