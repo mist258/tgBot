@@ -2,6 +2,7 @@ import json
 import re
 
 
+
 def validate_input(mssg) -> bool:  # validate  user input (int | float)
     pattern = re.compile(r'^-?\d+(\.\d+)?$')
     if pattern.fullmatch(mssg):
@@ -36,3 +37,8 @@ def write_data(filename, data):  # for recording new data
             return json.dump(data, f, indent=4)
     except (FileNotFoundError, json.decoder.JSONDecodeError):
         return {}
+
+
+def filtering_data_by_day(usr_data):
+    pass
+

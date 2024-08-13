@@ -19,14 +19,14 @@ async def add_income(message: Message, state: FSMContext) -> None:
 
 
 @router_state.message(IncomeStates.income)  # state to write incomes
-async def general_income(message: Message, state: FSMContext,) -> None:
+async def general_income(message: Message, state: FSMContext) -> None:
     data_time = datetime.datetime.now().strftime("%Y-%m-%d")
 
     if assist_functions.validate_input(message.text):
 
         update_data = {
-            "general_income": message.text,
-            "data_time": data_time
+            "data_time": data_time,
+            "general_income": message.text
         }
 
         user_id = str(message.from_user.id)
@@ -65,8 +65,8 @@ async def get_rent_expense(message: Message, state: FSMContext) -> None:
     if assist_functions.validate_input(message.text):
 
         update_data = {
-            "rent_expense": message.text,
-            "data_time": data_time
+            "data_time": data_time,
+            "rent_expense": message.text
         }
 
         user_id = str(message.from_user.id)
@@ -103,8 +103,8 @@ async def get_food_expense(message: Message, state: FSMContext) -> None:
     if assist_functions.validate_input(message.text):
 
         update_data = {
-            "food_expense": message.text,
-            "data_time": data_time
+            "data_time": data_time,
+            "food_expense": message.text
         }
 
         user_id = str(message.from_user.id)
@@ -141,8 +141,8 @@ async def get_clothes_expense(message: Message, state: FSMContext) -> None:
     if assist_functions.validate_input(message.text):
 
         update_data = {
-            "clothes_expense": message.text,
-            "data_time": data_time
+            "data_time": data_time,
+            "clothes_expense": message.text
         }
 
         user_id = str(message.from_user.id)
@@ -179,8 +179,8 @@ async def get_gym_expense(message: Message, state: FSMContext) -> None:
     if assist_functions.validate_input(message.text):
 
         update_data = {
-            "gym_expense": message.text,
-            "data_time": data_time
+            "data_time": data_time,
+            "gym_expense": message.text
         }
 
         user_id = str(message.from_user.id)
@@ -217,8 +217,8 @@ async def get_medicine_state(message: Message, state: FSMContext) -> None:
     if assist_functions.validate_input(message.text):
 
         update_data = {
-            "medicine_expense": message.text,
-            "data_time": data_time
+            "data_time": data_time,
+            "medicine_expense": message.text
         }
 
         user_id = str(message.from_user.id)
@@ -256,8 +256,8 @@ async def get_other_expense(message: Message, state: FSMContext) -> None:
     if assist_functions.validate_input(message.text):
 
         update_data = {
-            "other_expense": message.text,
-            "data_time": data_time
+            "data_time": data_time,
+            "other_expense": message.text
         }
 
         user_id = str(message.from_user.id)
