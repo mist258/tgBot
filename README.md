@@ -1,4 +1,4 @@
-DESCRIPTON
+DESCRIPTON (aiogram3)
 
 Основні функції:
 
